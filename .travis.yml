@@ -17,9 +17,9 @@ after_success: #after test exist with 0
  #login to docker CLI
  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
  #take those images and push them to docker hub
- - docker push brugaibah/multideploy-client
- - docker push brugaibah/multideploy-nginx
- - docker push brugaibah/multideploy-server
- - docker push brugaibah/multideploy-worker
+ - docker push bashayer/multideploy-client
+ - docker push bashayer/multideploy-nginx
+ - docker push bashayer/multideploy-server
+ - docker push bashayer/multideploy-worker
 
 
