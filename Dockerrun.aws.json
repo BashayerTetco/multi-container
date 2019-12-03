@@ -1,0 +1,12 @@
+{
+    "AWSEBDockerrunVersion": 2,
+    "containerDefinitions": [
+        {
+            "name":"client", //can be any name
+            "image": "bashayer/multi-client", //name of our image in Docker Hub
+            "hostname": "client", //name of host that other container can access to reach to this contianer
+            "essential": false , //if set as true if this container falls all other container will be shutdown even if it's working fine
+
+        }
+    ]
+}
