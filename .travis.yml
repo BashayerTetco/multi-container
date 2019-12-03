@@ -1,0 +1,25 @@
+sudo: required
+
+services:
+ - docker
+
+before_install: # we use test Dockerfile to download all dependancy 
+ - docker build -t bashayer/react-test -f ./client/Dockerfile.dev ./client
+
+ script:
+ - docker run -e CI=true bashayer/react-test npm run test
+
+after_success: #after test exist with 0
+ - docker build -t bashayer/multiDeploy-client ./client
+ - docker build -t bashayer/multiDeploy-nginx ./nginx
+ - docker build -t bashayer/multiDeploy-server ./server
+ - docker build -t bashayer/multiDeploy-worker ./worker
+ #login to docker CLI
+ - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
+ #take those images and push them to docker hub
+ - docker push bashayer/multiDeploy-client
+ - docker push bashayer/multiDeploy-nginx
+ - docker push bashayer/multiDeploy-server
+ - docker push bashayer/multiDeploy-worker
+
+
