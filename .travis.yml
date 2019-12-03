@@ -10,16 +10,16 @@ script:
  - docker run -e CI=true bashayer/react-test npm run test
 
 after_success: #after test exist with 0
- - docker build -t bashayer/multideploy-client ./client
- - docker build -t bashayer/multideploy-nginx ./nginx
- - docker build -t bashayer/multideploy-server ./server
- - docker build -t bashayer/multideploy-worker ./worker
+ - docker build -t brugaibah/multideploy-client ./client
+ - docker build -t brugaibah/multideploy-nginx ./nginx
+ - docker build -t brugaibah/multideploy-server ./server
+ - docker build -t brugaibah/multideploy-worker ./worker
  #login to docker CLI
  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
  #take those images and push them to docker hub
- - docker push bashayer/multideploy-client
- - docker push bashayer/multideploy-nginx
- - docker push bashayer/multideploy-server
- - docker push bashayer/multideploy-worker
+ - docker push brugaibah/multideploy-client
+ - docker push brugaibah/multideploy-nginx
+ - docker push brugaibah/multideploy-server
+ - docker push brugaibah/multideploy-worker
 
 
