@@ -6,7 +6,7 @@ services:
 before_install: # we use test Dockerfile to download all dependancy 
  - docker build -t bashayer/react-test -f ./client/Dockerfile.dev ./client
 
- script:
+script:
  - docker run -e CI=true bashayer/react-test npm run test
 
 after_success: #after test exist with 0
