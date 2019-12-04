@@ -10,14 +10,18 @@
             "hostname": "client",
             "_comment3": "name of host that other container can access to reach to this contianer",
             "essential": false,  
-            "_comment4":"if set as true if this container falls all other container will be shutdown even if it's working fine"
+            "_comment4":"if set as true if this container falls all other container will be shutdown even if it's working fine",
+            "memory":128,
+            "_comment44":"memory of RAM that client service will take"
+
 
         },
         {
             "name":"server", 
             "image": "brugaibah/multi-server", 
             "hostname": "api", 
-            "essential": false 
+            "essential": false,
+            "memory":128 
 
         },
         {
@@ -25,7 +29,8 @@
             "image": "brugaibah/multi-worker", 
             "hostname": "worker", 
             "_comment5": "optional since no service requires to access it",
-            "essential": false 
+            "essential": false,
+            "memory":128
 
         },
         {
@@ -41,7 +46,8 @@
                 }
             ],
              "links":["client","server"] ,
-             "_comment7":"provide the name of other contianer that we want to contact to "
+             "_comment7":"provide the name of other contianer that we want to contact to ",
+             "memory":128
 
         }
     ]
