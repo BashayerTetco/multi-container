@@ -10,7 +10,7 @@ script:
  - docker run -e CI=true bashayer/react-test npm run test
 
 after_success: #after test exist with 0
- - docker build -t brugaibah/multideploy-client ./client
+ - docker build -t brugaibah/multideploy-client ./client #tag it with username of DockerHub
  - docker build -t brugaibah/multideploy-nginx ./nginx
  - docker build -t brugaibah/multideploy-server ./server
  - docker build -t brugaibah/multideploy-worker ./worker

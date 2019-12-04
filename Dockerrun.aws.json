@@ -1,11 +1,47 @@
 {
     "AWSEBDockerrunVersion": 2,
-    "containerDefinitions": [
+    "_comment": "create definition for each service",
+    "containerDefinitions": [ 
         {
-            "name":"client", //can be any name
-            "image": "bashayer/multi-client", //name of our image in Docker Hub
-            "hostname": "client", //name of host that other container can access to reach to this contianer
-            "essential": false , //if set as true if this container falls all other container will be shutdown even if it's working fine
+            "name":"client", 
+            "_comment1": "can be any name",
+            "image": "brugaibah/multi-client", 
+            "_comment2":"name of our image in Docker Hub which is taged with our username" ,
+            "hostname": "client",
+            "_comment3": "name of host that other container can access to reach to this contianer",
+            "essential": false,  
+            "_comment4":"if set as true if this container falls all other container will be shutdown even if it's working fine"
+
+        },
+        {
+            "name":"server", 
+            "image": "brugaibah/multi-server", 
+            "hostname": "api", 
+            "essential": false 
+
+        },
+        {
+            "name":"worker", 
+            "image": "brugaibah/multi-worker", 
+            "hostname": "worker", 
+            "_comment5": "optional since no service requires to access it",
+            "essential": false 
+
+        },
+        {
+            "name":"nginx", 
+            "image": "brugaibah/multi-nginx", 
+            "hostname": "nginx",
+            "_comment6": "optional since no service requires to access it",
+            "essential": true,
+            "portMappings":[
+                {
+                    "hostPort":80,
+                    "containerPort":80
+                }
+            ],
+             "links":["client","server"] ,
+             "_comment7":"provide the name of other contianer that we want to contact to "
 
         }
     ]
