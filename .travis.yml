@@ -22,4 +22,17 @@ after_success: #after test exist with 0
  - docker push brugaibah/multideploy-server
  - docker push brugaibah/multideploy-worker
 
+deploy:
+ edge: true 
+ provider: elasticbeanstalk
+ region: ap-southeast-2
+ app: multi-docker
+ env: multiDocker-env
+ bucket_name: elasticbeanstalk-ap-southeast-2-171462072859
+ bucket_path: multi-docker
+ on:
+  branch: master
+ access_key_id: $AWS_ACCESS_KEY
+ secret_access_key: $AWS_SECRET_KEY
+
 
